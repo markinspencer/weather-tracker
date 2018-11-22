@@ -12,7 +12,7 @@ const renderCityForm = (dispatch, city) =>
       button(
         {
           type: "submit",
-          className: "white pointer bg-blue dim bn br2 pv2 ph3 br1"
+          className: "white bg-blue b--blue ba dim f3 pv2 ph3 pointer"
         },
         "Add"
       )
@@ -54,7 +54,10 @@ const view = (dispatch, model) => {
     h1({ className: "f2 pv2 bb" }, "Weather"),
     renderCityForm(dispatch, city),
     cities.length === 0
-      ? p({ className: "gray" }, "Add a location to get started!")
+      ? p(
+          { className: "f5 gray" },
+          "No location information to display, add a location to get started..."
+        )
       : renderCityList(dispatch, cities),
     pre(JSON.stringify(model, null, 2))
   ]);
