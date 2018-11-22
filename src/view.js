@@ -37,7 +37,7 @@ const renderCityItem = (dispatch, city) => {
       i(
         {
           className:
-            "relative top--1 right--1 mt1 mr1 fa fa-remove pointer black-40"
+            "relative top--1 right--1 mt1 mr1 fa fa-remove pointer black-40 dim"
         },
         ""
       )
