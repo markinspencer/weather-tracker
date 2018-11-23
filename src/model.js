@@ -1,6 +1,7 @@
 const initModel = {
   city: '',
-  cities: ''
+  cities: '',
+  nextId: 1
 };
 
 export default initModel;
