@@ -1,7 +1,3 @@
-import * as R from "ramda";
-
-const update = (action, model) => {
-  return model;
-};
+const update = (action, model) => model;
 
 export default update;

@@ -1,6 +1,6 @@
 const initModel = {
-  city: "",
-  cities: ""
+  city: '',
+  cities: ''
 };
 
 export default initModel;
