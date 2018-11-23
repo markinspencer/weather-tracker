@@ -21,15 +21,15 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.0",
-    "prettier": "^1.15.2",
     "regenerator-transform": "^0.12.1",
     "serve": "^6.4.9",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
-    "virtual-dom": "^2.1.1",
     "hyperscript-helpers": "^3.0.3",
-    "ramda": "^0.25.0"
+    "prettier": "^1.15.2",
+    "ramda": "^0.25.0",
+    "virtual-dom": "^2.1.1"
   }
 }
