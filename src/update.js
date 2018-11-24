@@ -7,7 +7,8 @@ const ACTIONS = {
   HTTP_SUCCESS: 'HTTP_SUCCESS'
 };
 
-const APPID = 'f649c361ddab9302d6550f868cd7932b';
+// Place API key here
+const APPID = '';
 
 const weatherUrl = city =>
   `http://api.openweathermap.org/data/2.5/weather?q=${encodeURI(city)}&units=metric&APPID=${APPID}`;
