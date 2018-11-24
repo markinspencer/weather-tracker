@@ -34,7 +34,7 @@ const renderCityForm = (dispatch, model) =>
   );
 
 const renderCityDetail = (className, labelText, data) =>
-  div({ className }, [div({ className: 'f7 b' }, labelText), div(data)]);
+  div({ className }, [div({ className: 'f7 b' }, labelText), div({}, data)]);
 
 const renderCityItem = R.curry((dispatch, city) => {
   const { name, temp, low, high, id } = city;
