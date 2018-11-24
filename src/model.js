@@ -1,6 +1,6 @@
 const initModel = {
   city: '',
-  cities: '',
+  cities: [],
   nextId: 1
 };
 

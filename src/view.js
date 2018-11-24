@@ -3,7 +3,7 @@ import hh from 'hyperscript-helpers';
 import { h } from 'virtual-dom';
 import { cityInputAction, addCityAction, deleteCityAction } from './update';
 
-const { div, h1, p, pre, form, label, input, button, ul, li, i } = hh(h);
+const { div, h1, form, label, input, button, ul, li, i } = hh(h);
 
 const renderCityForm = (dispatch, model) =>
   div(
@@ -11,7 +11,7 @@ const renderCityForm = (dispatch, model) =>
       {
         onsubmit: e => {
           e.preventDefault();
-          dispatch(addCityAction());
+          dispatch(addCityAction);
         }
       },
       [
@@ -36,26 +36,22 @@ const renderCityForm = (dispatch, model) =>
 const renderCityDetail = (className, labelText, data) =>
   div({ className }, [div({ className: 'f7 b' }, labelText), div(data)]);
 
-const renderCityItem = (dispatch, city) => {
-  const { location, temp, low, high, id } = city;
-
+const renderCityItem = R.curry((dispatch, city) => {
+  const { name, temp, low, high, id } = city;
   return li({ className: 'pa3 bb b--light-silver flex justify-between relative' }, [
-    renderCityDetail('w-60 tl', 'Location', location),
+    renderCityDetail('w-60 tl', 'Location', name),
     renderCityDetail('w-10 tc', 'Temp', temp),
     renderCityDetail('w-10 tc', 'High', high),
     renderCityDetail('w-10 tc mr2', 'Low', low),
-    i(
-      {
-        className: 'relative top--1 right--1 mt1 mr1 fa fa-remove pointer black-40 dim',
-        onclick: () => dispatch(deleteCityAction(id))
-      },
-      ''
-    )
+    i({
+      className: 'relative top--1 right--1 mt1 mr1 fa fa-remove pointer black-40 dim',
+      onclick: () => dispatch(deleteCityAction(id))
+    })
   ]);
-};
+});
 
 const renderCityList = (dispatch, cities) => {
-  const listItems = R.map(city => renderCityItem(dispatch, city), cities);
+  const listItems = R.map(renderCityItem(dispatch), cities);
   return ul({ className: 'list pl0 ml0 ba b--light-silver br' }, listItems);
 };
 
@@ -64,13 +60,7 @@ const view = (dispatch, model) => {
   return div({ className: 'mw6 center' }, [
     h1({ className: 'f2 pv2 bb' }, 'Weather'),
     renderCityForm(dispatch, model),
-    cities.length === 0
-      ? p(
-          { className: 'f5 gray' },
-          'No location information to display, add a location to get started...'
-        )
-      : renderCityList(dispatch, cities),
-    pre(JSON.stringify(model, null, 2))
+    renderCityList(dispatch, cities)
   ]);
 };
 

@@ -11,9 +11,9 @@ export const cityInputAction = city => ({
   city
 });
 
-export const addCityAction = () => ({
+export const addCityAction = {
   type: ACTIONS.ADD_CITY
-});
+};
 
 export const deleteCityAction = id => ({
   type: ACTIONS.DELETE_CITY,
@@ -24,24 +24,34 @@ const update = (action, model) => {
   switch (action.type) {
     case ACTIONS.CITY_INPUT_VALUE: {
       const { city } = action;
+
       return { ...model, city };
     }
 
     case ACTIONS.ADD_CITY: {
-      const { city: location, cities, nextId: id } = model;
-      const newCity = { id, location, temp: '?', high: '?', low: '?' };
-      const nextId = id + 1;
+      const { city, cities, nextId } = model;
+
+      const newCity = {
+        id: nextId,
+        name: city,
+        temp: '?',
+        high: '?',
+        low: '?'
+      };
+
+      const updatedCities = R.prepend(newCity, cities);
 
       return {
-        nextId,
         city: '',
-        cities: [...cities, newCity]
+        cities: updatedCities,
+        nextId: nextId + 1
       };
     }
 
     case ACTIONS.DELETE_CITY: {
       const { id } = action;
       const cities = R.reject(R.propEq('id', id), model.cities);
+
       return {
         ...model,
         cities
